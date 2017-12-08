@@ -1,9 +1,31 @@
-.form-group
-  label(for="title") Title
+.form-group.col-md-3
+  label(for="title") Event Title
   input.form-control(type="text", name="title", placeholder="What's your event?", value=event.title)
-.form-group
-  label(for="event") Event
-  textarea.form-control(name="content", rows="5")= event.content
-.form-group
+.form-group.col-md-3
+  label(for='location') Location
+  input.form-control(type="text", name="venue", placeholder="Enter the venue's name")
+  input.form-control(type="text", name="city", placeholder="City (ex:용인시 처인구)")
+  input.form-control(type="text", name="state", placeholder="State (ex:경기도)")
+.row
+  .form-group.col-md-3    
+    label(for="starts") Starts
+    .row
+      input.form-control.col-sm-8(type="text", name="startDate", placeholder="Date (YYYY/MM/DD)")
+      input.form-control.col-sm-4(type="text", name="startTime", placeholder="Time")
+  .form-group.col-md-3
+    label(for="ends") Ends
+    .row
+      input.form-control.col-sm-8(type="text", name="endDate", placeholder="Date (YYYY/MM/DD)")
+      input.form-control.col-sm-4(type="text", name="endTime", placeholder="Time")
+.form-group.col-md-6
+  label(for="eventDiscription") Event Description
+  textarea.form-control(name="eventDiscription", rows="5")= event.content
+.form-group.col-md-4
+  label(for="organizer") Organizer Name
+  input.form-control(type="text", name="organizer", placeholder="Who's organizing this event?")
+.form-group.col-md-6
+  label(for="organizerDiscription") Organizer Description
+  textarea.form-control(name="organizerDiscription", rows="5")
+.form-group.col-md-4
   label(for="tags") Tags
   input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=event.tags ? event.tags.join(" ") : "")
