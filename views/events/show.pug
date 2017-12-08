@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title= event.title
+
+    .event.show
+      include _event
+
+      .buttons
+        button.btn.btn-primary #[i.fa.fa-thumbs-up] Like
+        | 
+        a.btn.btn-outline-secondary(href=`/events/${event.id}/edit`) Edit
+        | 
+        a.btn.btn-outline-danger.delete-btn(href="#", data-url=`/events/${event.id}?_method=delete`) Delete
+      
+    if event.numRegisters > 0
+      hr
+      h3 #{event.numRegisters} Register(s)
+      .registers.show
+        each register in registers
+          include _register
+
+    form(action=`/events/${event.id}/registers`, method='POST')
+      .form-group
+        label(for='register') Your Register
+        textarea.form-control(name="content", rows="5")
+      button.btn.btn-primary(type="submit") Register
+
+  script.
+    $(function() {
+      $('.delete-btn').click(function() {
+        if (confirm('Are you sure to delete?')) {
+          location = $(this).data('url');
+        }
+        return false;
+      });
+    });
